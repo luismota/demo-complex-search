@@ -85,7 +85,7 @@ paths:
         200:
           description: The list of Products
           schema:
-            $ref: '#/definitions/hal_products'
+            $ref: '#/definitions/halProducts'
 
   /products/{product_id}:
     x-summary: Order
@@ -104,16 +104,16 @@ paths:
         200:
           description: A particular Product
           schema:
-            $ref: '#/definitions/hal_product'
+            $ref: '#/definitions/halProduct'
 
 definitions:
   #
   # Products Resource
   #
-  hal_products:
+  halProducts:
     type: object
     allOf:
-      - $ref: '#/definitions/hal_resource'
+      - $ref: '#/definitions/halResource'
     example:
       _links:
         self:
@@ -121,39 +121,39 @@ definitions:
 
       _embedded:
         product:
-          - $ref: '#/definitions/hal_product/example'
+          - $ref: '#/definitions/halProduct/example'
 
   #
   # Order Resource
   #
 
   # HAL Wrapper
-  hal_product:
+  halProduct:
     type: object
     allOf:
-      - $ref: '#/definitions/hal_resource'
+      - $ref: '#/definitions/halResource'
       - $ref: '#/definitions/product'
     example:
       _links:
         self:
           href: /products/1234
           
-      some_field: 1234
-      other_field: 42
+      someField: 1234
+      otherField: 42
 
   # Product
   product:
     type: object
     properties:
-      some_field:
+      someField:
         type: number
-      other_field:
+      otherField:
         type: number
     required:
-      - some_field
+      - someField
     example:
-      some_field: 1234
-      other_field: 42
+      someField: 1234
+      otherField: 42
 
   #
   # -- DO NOT EDIT BEYOND THIS POINT --
@@ -164,7 +164,7 @@ definitions:
   #
   # application/problem+json
   #
-  problem_detail:
+  problemDetail:
     type: object
     properties:
       type:
@@ -184,7 +184,7 @@ definitions:
   #
   # application/hal+json defintion
   #
-  hal_link_object:
+  halLinkObject:
     type: object
     required:
       - href
@@ -206,7 +206,7 @@ definitions:
       hreflang:
         type: string
 
-  hal_curies_link:
+  halCuriesLink:
     title: HAL Curies Link
     allOf:
       - type: object
@@ -216,9 +216,9 @@ definitions:
               - true
         required:
           - templated
-      - $ref: '#/definitions/hal_link_object'
+      - $ref: '#/definitions/halLinkObject'
 
-  hal_resource:
+  halResource:
     title: HAL Resource Object
     type: object
     properties:
@@ -227,18 +227,18 @@ definitions:
         additionalProperties:
           # WARN: Should be "anyOf" but "anyOf" isn't supported in Swagger 2.0
           allOf:
-            - $ref: '#/definitions/hal_link_object'
+            - $ref: '#/definitions/halLinkObject'
             - type: array
               items:
-                - $ref: '#/definitions/hal_link_object'
+                - $ref: '#/definitions/halLinkObject'
         properties:
           curies:
             # WARN: Should be "anyOf" but "anyOf" isn't supported in Swagger 2.0
             allOf:
-              - $ref: '#/definitions/hal_curies_link'
+              - $ref: '#/definitions/halCuriesLink'
               - type: array
                 items:
-                  - $ref: '#/definitions/hal_curies_link'
+                  - $ref: '#/definitions/halCuriesLink'
       _embedded:
         type: object
         additionalProperties: true
