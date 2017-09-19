@@ -96,7 +96,7 @@ paths:
         description: Id of the Order
         required: true
         type: string
-        x-example: 1234
+        x-example: "1234"
 
     get:
       summary: Retrieve Product
